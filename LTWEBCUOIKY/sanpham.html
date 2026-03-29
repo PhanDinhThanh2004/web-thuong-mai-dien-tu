@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm | TimeHouse</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6600;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 25px;
+            padding: 8px 15px;
+            width: 40%;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 5px;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .search-icon {
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .user-actions a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            background-color: #ff6600;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 60px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 32px;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .price {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .order-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #ff9966;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .order-btn:hover {
+            background-color: #ff6600;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .page-btn.active {
+            background-color: #ff6600;
+            color: white;
+            border-color: #ff6600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 5% 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 5px 10px;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+            }
+            
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+            TimeHouse
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm đồng hồ...">
+                <button onclick="searchProducts()"><i class="fa fa-search"></i> Tìm</button>
+            </div>
+
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px; margin-left: 20px;">
+                <a href="giohang.html" style="text-decoration: none; color: #333; position: relative;">
+                Giỏ hàng (<span id="cart-count" style="color: #ff6600; font-weight: bold;">0</span>)
+                </a>
+        
+                <div id="user-links" style="display: flex; gap: 10px; font-size: 14px;">
+                    <a href="dangnhap.html">Đăng nhập</a>
+                    <span>|</span>
+                    <a href="dangky.html">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">TRANG CHỦ</a>
+            <a href="sanpham.html">SẢN PHẨM</a>
+            <a href="thuonghieu.html">THƯƠNG HIỆU</a>
+            <a href="gioithieu.html">GIỚI THIỆU</a>
+            <a href="lienhe.html">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+    <section class="products-section">
+        <h2 class="section-title">TẤT CẢ SẢN PHẨM</h2>
+        
+        <div class="filter-bar">
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Thương hiệu</option>
+                    <option>Casio</option>
+                    <option>Seiko</option>
+                    <option>Citizen</option>
+                    <option>Omega</option>
+                    <option>Rolex</option>
+                </select>
+                <select class="filter-select">
+                    <option>Giá</option>
+                    <option>Dưới 2 triệu</option>
+                    <option>2 - 5 triệu</option>
+                    <option>5 - 10 triệu</option>
+                    <option>Trên 10 triệu</option>
+                </select>
+                <select class="filter-select">
+                    <option>Loại</option>
+                    <option>Đồng hồ nam</option>
+                    <option>Đồng hồ nữ</option>
+                    <option>Đồng hồ đôi</option>
+                    <option>Smartwatch</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Sắp xếp</option>
+                    <option>Giá thấp đến cao</option>
+                    <option>Giá cao đến thấp</option>
+                    <option>Tên A-Z</option>
+                    <option>Bán chạy nhất</option>
+                </select>
+            </div>
+        </div>
+        
+    <div class="product-list" id="product-list">
+        <div class="product" data-name="đồng hồ nam dây da">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ nam dây da">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Nam dây da cao cấp</div>
+                <div class="price">
+                    <span class="old-price">3.500.000 đ</span> 2.990.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(101, 'Đồng hồ Nam dây da cao cấp', 2990000, 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ nữ kim cương">
+            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTRg_OFhgVmnNWMXnKA03G5ZvOMlKGhDMPGtRQ6LxnznSevazvW6fytj-90l-tQ73fm4GuBJEFG7UFTUcczjuNR-jO090coV6S3cNRmnivrrXhmhIUvH8sTMxHURqapwCPr-kQ803k&usqp=CAc" alt="Đồng hồ nữ kim cương">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Nữ đính kim cương</div>
+                <div class="price">
+                    <span class="old-price">5.200.000 đ</span> 4.500.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(99, 'Đồng hồ Nữ đính kim cương', 4500000, 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTRg_OFhgVmnNWMXnKA03G5ZvOMlKGhDMPGtRQ6LxnznSevazvW6fytj-90l-tQ73fm4GuBJEFG7UFTUcczjuNR-jO090coV6S3cNRmnivrrXhmhIUvH8sTMxHURqapwCPr-kQ803k&usqp=CAc')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ thể thao">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ thể thao">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Thể thao chống nước</div>
+                <div class="price">
+                    <span class="old-price">2.800.000 đ</span> 2.300.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(102, 'Đồng hồ Thể thao chống nước', 2300000, 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ thông minh">
+            <img src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ thông minh">
+            <div class="product-info">
+                <div class="product-name">Smart Watch đa chức năng</div>
+                <div class="price">
+                    <span class="old-price">4.500.000 đ</span> 3.990.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(103, 'Smart Watch đa chức năng', 3990000, 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ nam kim loại">
+            <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ nam kim loại">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Nam dây kim loại</div>
+                <div class="price">
+                    <span class="old-price">4.200.000 đ</span> 3.500.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(104, 'Đồng hồ Nam dây kim loại', 3500000, 'https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ nữ thời trang">
+            <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ nữ thời trang">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Nữ thời trang</div>
+                <div class="price">
+                    <span class="old-price">3.800.000 đ</span> 3.200.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(105, 'Đồng hồ Nữ thời trang', 3200000, 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ cổ điển">
+            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ cổ điển">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Cổ điển</div>
+                <div class="price">
+                <span class="old-price">6.500.000 đ</span> 5.800.000 đ
+            </div>
+                <button class="order-btn" onclick="addToCart(106, 'Đồng hồ Cổ điển', 5800000, 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+
+        <div class="product" data-name="đồng hồ đôi">
+            <img src="https://images.unsplash.com/photo-1518131672697-613becd4fab5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Đồng hồ đôi">
+            <div class="product-info">
+                <div class="product-name">Đồng hồ Đôi cao cấp</div>
+                <div class="price">
+                    <span class="old-price">8.900.000 đ</span> 7.500.000 đ
+                </div>
+                <button class="order-btn" onclick="addToCart(107, 'Đồng hồ Đôi cao cấp', 7500000, 'https://images.unsplash.com/photo-1518131672697-613becd4fab5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+                    THÊM VÀO GIỎ
+                </button>
+            </div>
+        </div>
+    </div>
+        
+        <div class="pagination">
+            <button class="page-btn">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Hệ thống cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <ul>
+                    <li>Địa chỉ: nhóm 10 lập trình web trường uth </li>
+                    <li>Hotline: 1900 000 nhớ </li>
+                    <li>Email: infor@timehouse.vn</li>
+                    <li>Giờ làm việc: 8:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script>
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(product => {
+                const productName = product.getAttribute('data-name').toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+        
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

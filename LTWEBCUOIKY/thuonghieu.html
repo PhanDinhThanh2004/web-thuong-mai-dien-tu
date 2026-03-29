@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thương Hiệu | TimeHouse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6600;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 25px;
+            padding: 8px 15px;
+            width: 40%;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 5px;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .search-icon {
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .user-actions a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            background-color: #ff6600;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Brands Section */
+        .brands-section {
+            padding: 60px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 32px;
+        }
+        
+        .brands-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .brand {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .brand:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .brand img {
+            width: 120px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .brand-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        /* Brand Detail */
+        .brand-detail {
+            margin-top: 50px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .brand-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .brand-logo {
+            flex: 0 0 200px;
+        }
+        
+        .brand-logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .brand-description {
+            flex: 1;
+        }
+        
+        .brand-description h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 5% 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 5px 10px;
+            }
+            
+            .brand-info {
+                flex-direction: column;
+            }
+            
+            .brand-logo {
+                flex: 0 0 auto;
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+            TimeHouse
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm đồng hồ...">
+                <button onclick="searchProducts()"><i class="fa fa-search"></i> Tìm</button>
+            </div>
+
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px; margin-left: 20px;">
+                <a href="giohang.html" style="text-decoration: none; color: #333; position: relative;">
+                Giỏ hàng (<span id="cart-count" style="color: #ff6600; font-weight: bold;">0</span>)
+                </a>
+        
+                <div id="user-links" style="display: flex; gap: 10px; font-size: 14px;">
+                    <a href="dangnhap.html">Đăng nhập</a>
+                    <span>|</span>
+                    <a href="dangky.html">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">TRANG CHỦ</a>
+            <a href="sanpham.html">SẢN PHẨM</a>
+            <a href="thuonghieu.html">THƯƠNG HIỆU</a>
+            <a href="gioithieu.html">GIỚI THIỆU</a>
+            <a href="lienhe.html">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+    <section class="brands-section">
+        <h2 class="section-title">THƯƠNG HIỆU ĐỒNG HỒ</h2>
+        
+        <div class="brands-list">
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Casio-Logo.png" alt="Casio">
+                <div class="brand-name">CASIO</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Seiko-Logo.png" alt="Seiko">
+                <div class="brand-name">SEIKO</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Citizen-Logo.png" alt="Citizen">
+                <div class="brand-name">CITIZEN</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Tissot-Logo.png" alt="Tissot">
+                <div class="brand-name">TISSOT</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Orient-Logo.png" alt="Orient">
+                <div class="brand-name">ORIENT</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Fossil-Logo.png" alt="Fossil">
+                <div class="brand-name">FOSSIL</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Omega-Logo.png" alt="Omega">
+                <div class="brand-name">OMEGA</div>
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Rolex-Logo.png" alt="Rolex">
+                <div class="brand-name">ROLEX</div>
+            </div>
+        </div>
+        
+        <div class="brand-detail">
+            <div class="brand-info">
+                <div class="brand-logo">
+                    <img src="https://logos-world.net/wp-content/uploads/2020/12/Casio-Logo.png" alt="Casio">
+                </div>
+                <div class="brand-description">
+                    <h3>CASIO - Đổi mới và Sáng tạo</h3>
+                    <p>Casio là thương hiệu đồng hồ Nhật Bản nổi tiếng toàn cầu với các dòng sản phẩm đa dạng từ đồng hồ điện tử, đồng hồ thể thao đến đồng hồ thông minh. Với công nghệ tiên tiến và độ bền vượt trội, Casio đã trở thành lựa chọn hàng đầu của người tiêu dùng trên toàn thế giới.</p>
+                    <p>Thương hiệu này đặc biệt nổi tiếng với dòng đồng hồ G-Shock - biểu tượng của sự bền bỉ và cá tính mạnh mẽ. Ngoài ra, các dòng đồng hồ Edifice, Sheen và Baby-G cũng rất được ưa chuộng tại thị trường Việt Nam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Hệ thống cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <ul>
+                    <li>Địa chỉ: nhóm 10 lập trình web trường uth </li>
+                    <li>Hotline: 1900 000 nhớ </li>
+                    <li>Email: infor@timehouse.vn</li>
+                    <li>Giờ làm việc: 8:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
