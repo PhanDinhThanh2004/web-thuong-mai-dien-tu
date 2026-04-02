@@ -11,7 +11,7 @@
         /* HEADER */
         header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 99; }
         .top-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; }
-        .logo { font-size: 24px; font-weight: bold; color: #ff6600; }
+        .logo { font-size: 24px; font-weight: bold; color: #ff6600; text-decoration: none;}
         
         /* CSS GIỎ HÀNG */
         .cart-container { width: 80%; max-width: 1000px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -37,7 +37,7 @@
         .btn-back { text-decoration: none; color: #555; font-weight: bold; display: flex; align-items: center; gap: 5px; }
         .btn-back:hover { color: #ff6600; }
         
-        .btn-checkout { background: #ff6600; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+        .btn-checkout { background: #ff6600; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; cursor: pointer; border: none;}
         .btn-checkout:hover { background: #e65c00; box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3); }
         
         .btn-remove { color: #999; cursor: pointer; font-size: 14px; }
@@ -51,7 +51,7 @@
 
     <header>
         <div class="top-header">
-            <div class="logo">TimeHouse</div>
+            <a href="index.html" class="logo">TimeHouse</a>
             <div class="header-actions" style="display: flex; gap: 20px; align-items: center;">
                 <a href="giohang.html" style="text-decoration: none; color: #333;">
                     Giỏ hàng (<b id="cart-count" style="color: #ff6600;">0</b>)
@@ -84,7 +84,7 @@
 
         <div class="action-buttons">
             <a href="sanpham.html" class="btn-back">← Tiếp tục mua sắm</a>
-            <a href="#" onclick="checkout()" class="btn-checkout">Tiến hành thanh toán</a>
+            <button onclick="checkout()" class="btn-checkout">Tiến hành thanh toán</button>
         </div>
     </div>
 
@@ -165,9 +165,8 @@
                 window.location.href = 'dangnhap.html';
                 return;
             }
-            alert('Đặt hàng thành công! Cảm ơn bạn.');
-            localStorage.removeItem('cart');
-            renderCart();
+            // Đã sửa đổi: Chuyển hướng sang trang thanh toán thay vì kết thúc luôn
+            window.location.href = 'checkout.html';
         }
 
         renderCart();
