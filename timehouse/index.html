@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ | TIMEHOUSE</title>
+</head>
+<link rel="stylesheet" href="style.css" type ="text/css">
+<body>
+    <header>
+        <div class="top-header">
+            <a href="index.html" class="logo">TIMEHOUSE</a>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm đồng hồ...">
+                <button onclick="handleSearch()" style="border:none; background:none; cursor:pointer;">🔍</button>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+                <a href="giohang.php" style="text-decoration: none; color: #333;">Giỏ hàng (<b id="cart-count" style="color: #ff6600;">0</b>)</a>
+                <div id="user-links">
+                    <a href="dangnhap.php">Đăng nhập</a> | <a href="dangky.php">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">TRANG CHỦ</a>
+            <a href="sanpham.php">SẢN PHẨM</a>
+            <a href="thuonghieu.php">THƯƠNG HIỆU</a>
+            <a href="gioithieu.html">GIỚI THIỆU</a>
+            <a href="lienhe.html">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>ĐỒNG HỒ CHÍNH HÃNG</h1>
+        <p>Đẳng cấp thời gian - Tinh hoa công nghệ</p>
+        <a href="sanpham.php" class="btn">MUA NGAY</a>
+    </div>
+
+    <section class="categories">
+        <h2 class="section-title">DANH MỤC NỔI BẬT</h2>
+        <div class="category-list">
+            <div class="category" onclick="window.location.href='sanpham.php'">
+                <img src="img/rolex1.jpg" alt="Rolex"><div class="category-name">ROLEX</div>
+            </div>
+            <div class="category" onclick="window.location.href='sanpham.php'">
+                <img src="img/omega1.jpg" alt="Omega"><div class="category-name">OMEGA</div>
+            </div>
+            <div class="category" onclick="window.location.href='sanpham.php'">
+                <img src="img/casio1.jpg" alt="Casio"><div class="category-name">CASIO</div>
+            </div>
+            <div class="category" onclick="window.location.href='sanpham.php'">
+                <img src="img/seiko1.jpg" alt="Seiko"><div class="category-name">SEIKO</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <h2 class="section-title">SẢN PHẨM BÁN CHẠY</h2>
+        <div class="product-list">
+            <div class="product">
+                <div class="product-img-box"><img src="img/rolex1.jpg"></div>
+                <div class="product-info">
+                    <div class="product-name">Rolex Submariner No‑Date</div>
+                    <span class="price">280.000.000 đ</span>
+                    <button class="order-btn" onclick="addToCart(1, 'Rolex Submariner No‑Date', 280000000, 'img/rolex1.jpg')">THÊM VÀO GIỎ</button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="product-img-box"><img src="img/casio1.jpg"></div>
+                <div class="product-info">
+                    <div class="product-name">Casio G‑Shock Classic</div>
+                    <span class="price">3.500.000 đ</span>
+                    <button class="order-btn" onclick="addToCart(6, 'Casio G‑Shock Classic', 3500000, 'img/casio1.jpg')">THÊM VÀO GIỎ</button>
+                </div>
+            </div>
+             <div class="product">
+                <div class="product-img-box"><img src="img/omega1.jpg"></div>
+                <div class="product-info">
+                    <div class="product-name">Omega Seamaster Diver 300M</div>
+                    <span class="price">125.000.000 đ</span>
+                    <button class="order-btn" onclick="addToCart(11, 'Omega Seamaster Diver 300M', 125000000, 'img/omega1.jpg')">THÊM VÀO GIỎ</button>
+                </div>
+            </div>
+             <div class="product">
+                <div class="product-img-box"><img src="img/citizen1.jpg"></div>
+                <div class="product-info">
+                    <div class="product-name">Citizen Eco‑Drive BM7256</div>
+                    <span class="price">6.800.000 đ</span>
+                    <button class="order-btn" onclick="addToCart(20, 'Citizen BM7256‑50E Eco‑Drive', 6800000, 'img/citizen1.jpg')">THÊM VÀO GIỎ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="lienhe.html">Hệ thống cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="lienhe.html">Chính sách bảo hành</a></li>
+                    <li><a href="lienhe.html">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="giohang.php">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <ul>
+                    <li>Địa chỉ: nhóm 10 lập trình web trường uth </li>
+                    <li>Hotline: 1900 000 </li>
+                    <li>Email: infor@timehouse.vn</li>
+                    <li>Giờ làm việc: 8:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js?v=<?php echo time(); ?>"></script>
+</body>
+</html>

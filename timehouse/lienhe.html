@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ | TIMEHOUSE</title>
+</head>
+<link rel="stylesheet" href="style.css" type ="text/css">
+<body>
+    <header>
+        <div class="top-header">
+            <a href="index.html" class="logo">TIMEHOUSE</a>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm đồng hồ...">
+                <button onclick="handleSearch()" style="border:none; background:none; cursor:pointer;">🔍</button>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+                <a href="giohang.php" style="text-decoration: none; color: #333;">Giỏ hàng (<b id="cart-count" style="color: #ff6600;">0</b>)</a>
+                <div id="user-links">
+                    <a href="dangnhap.php">Đăng nhập</a> | <a href="dangky.php">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">TRANG CHỦ</a>
+            <a href="sanpham.php">SẢN PHẨM</a>
+            <a href="thuonghieu.php">THƯƠNG HIỆU</a>
+            <a href="gioithieu.html">GIỚI THIỆU</a>
+            <a href="lienhe.html">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+
+    <section class="contact-section">
+        <h2 class="section-title">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h3>Địa chỉ</h3>
+                        <p>nhóm 10 môn lt web của uth </p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h3>Điện thoại</h3>
+                        <p>1900 000</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>infor@timehouse.vn</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-text">
+                        <h3>Giờ làm việc</h3>
+                        <p>Thứ 2 - Chủ nhật: 8:00 - 22:00</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🌐</div>
+                    <div class="info-text">
+                        <h3>Website</h3>
+                        <p>www.timehouse.vn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>GỬI TIN NHẮN CHO CHÚNG TÔI</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Họ và tên *</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Chủ đề</label>
+                        <input type="text" id="subject" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung *</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">GỬI TIN NHẮN</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="stores">
+            <h3 class="section-title" style="font-size: 28px;">HỆ THỐNG CỬA HÀNG</h3>
+            <div class="store-list">
+                <div class="store">
+                    <h3>TimeHouse Quận 1</h3>
+                    <p>📍 45 Lê Lợi, Quận 1, TP.HCM</p>
+                    <p>📞 0111 111 111</p>
+                    <p>🕒 8:00 - 22:00</p>
+                </div>
+                <div class="store">
+                    <h3>TimeHouse Quận Gò Té</h3>
+                    <p>📍 123 Quang Trung, Quận Gò Té, TP.HCM</p>
+                    <p>📞 0222 222 222</p>
+                    <p>🕒 8:00 - 22:00</p>
+                </div>
+                <div class="store">
+                    <h3>TimeHouse nhóm 10 lập trình web trường uth</h3>
+                    <p>📍 70 Đ.Tô Ký, Quận 12, TP.HCM</p>
+                    <p>📞 1900 000 nhớ</p>
+                    <p>🕒 8:00 - 22:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="lienhe.html">Hệ thống cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="lienhe.html">Chính sách bảo hành</a></li>
+                    <li><a href="lienhe.html">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="giohang.php">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <ul>
+                    <li>Địa chỉ: nhóm 10 lập trình web trường uth </li>
+                    <li>Hotline: 1900 000 </li>
+                    <li>Email: infor@timehouse.vn</li>
+                    <li>Giờ làm việc: 8:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js?v=<?php echo time(); ?>"></script>
+</body>
+</html>

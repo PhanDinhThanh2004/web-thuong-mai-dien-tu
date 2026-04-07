@@ -1,0 +1,775 @@
+/* =========================================
+   1. VARIABLES & RESET & GLOBAL
+   ========================================= */
+:root {
+    --primary-color: #ff6600;
+    --primary-hover: #e65c00;
+    --text-color: #333;
+    --bg-color: #f9f9f9;
+    --white: #fff;
+    --gray-light: #eee;
+    --gray-bg: #f5f5f5;
+    --danger: #d32f2f;
+    --font-main: 'Times New Roman', Times, serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Tiêu đề chung cho các section */
+.section-title {
+    text-align: center;
+    margin: 50px 0 30px; /* Cân đối lại margin */
+    color: var(--text-color);
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+/* Nút bấm chung (Button styles consolidation) */
+.btn, .order-btn, .submit-btn, .btn-checkout, .btn-view-all {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px; /* Thống nhất radius */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn:hover, .order-btn:hover, .submit-btn:hover, .btn-checkout:hover, .btn-view-all:hover {
+    background-color: var(--primary-hover);
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION
+   ========================================= */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.logo:hover {
+    color: var(--primary-hover);
+    cursor: pointer;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--gray-bg);
+    border-radius: 25px;
+    padding: 8px 15px;
+    width: 40%;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.search-icon {
+    cursor: pointer;
+    color: #666;
+}
+
+.user-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.user-actions a {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    background-color: var(--primary-color);
+    flex-wrap: wrap; /* Để mobile không bị vỡ */
+}
+
+nav a {
+    color: var(--white);
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   3. PRODUCT CARDS (Shared Logic)
+   ========================================= */
+/* Container chung cho grid sản phẩm (dùng cho cả index và sanpham) */
+.product-list, .container .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Thẻ sản phẩm */
+.product {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Box ảnh & Hiệu ứng lật ảnh */
+.product-img-box {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.product-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Đảm bảo ảnh không bị méo */
+    transition: opacity 0.4s ease;
+}
+
+/* Xử lý ảnh hover (nếu có class img-hover) */
+.product-img-box img.img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+.product:hover .img-hover {
+    opacity: 1;
+}
+
+/* Thông tin sản phẩm */
+.product-info, .info {
+    padding: 0 20px;
+    text-align: center;
+}
+
+.brand {
+    /* Class này trùng tên với trang thương hiệu nên cần cẩn thận, 
+       nhưng ở trang sản phẩm nó là text nhỏ */
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+    background: none; /* Reset đè từ trang thương hiệu */
+    box-shadow: none;
+    width: auto;
+}
+
+.product-name, .name {
+    /* ... các thuộc tính cũ giữ nguyên ... */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    line-clamp: 2;  /* <-- Thêm dòng này vào */
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+}
+
+.price {
+    color: var(--danger);
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.order-btn {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Container riêng cho trang sanpham.html */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    min-height: 600px;
+}
+
+/* =========================================
+   4. TRANG CHỦ (Index specific)
+   ========================================= */
+.banner {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1547996160-81dfa63595aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 30px;
+}
+
+.categories {
+    padding: 0 5%;
+    margin-bottom: 50px;
+}
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.category {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 180px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.category:hover {
+    transform: translateY(-10px);
+}
+
+.category img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.products-section {
+    padding: 0 5% 60px;
+}
+
+/* =========================================
+   5. TRANG GIỎ HÀNG (Cart specific)
+   ========================================= */
+.cart-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.cart-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td, th {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+.cart-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: var(--white);
+    cursor: pointer;
+}
+
+.total-price {
+    text-align: right;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--danger);
+    margin: 20px 0;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #555;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.btn-checkout {
+    padding: 12px 30px;
+    text-decoration: none;
+}
+
+.btn-remove {
+    color: #999;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    background: none;
+}
+
+.btn-remove:hover {
+    color: red;
+}
+
+#qr-box {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#qr-img {
+    width: 300px;
+    height: 300px;
+    margin: 15px 0;
+}
+
+/* =========================================
+   6. TRANG GIỚI THIỆU (About specific)
+   ========================================= */
+.about-section {
+    padding: 60px 5%;
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+    align-items: center;
+}
+
+.about-text, .about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.value-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.value-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.value-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.milestones {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.milestone-list {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.milestone {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+}
+
+.milestone-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   7. TRANG LIÊN HỆ (Contact specific)
+   ========================================= */
+.contact-section {
+    padding: 60px 5%;
+}
+
+.contact-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    font-size: 20px;
+    margin-right: 15px;
+    color: var(--primary-color);
+    min-width: 20px;
+}
+
+.info-text h3 {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea.form-control {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+}
+
+.stores {
+    margin-top: 60px;
+}
+
+.store-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.store {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.store h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   8. TRANG THƯƠNG HIỆU (Brand specific)
+   ========================================= */
+.brands-section {
+    padding: 60px 5%;
+    min-height: 600px;
+}
+
+.brands-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Lưu ý: class .brand ở đây khác class .brand trong sản phẩm */
+.brands-list .brand {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    cursor: pointer;
+    width: 160px;
+    border: 2px solid transparent;
+}
+
+.brands-list .brand:hover, .brands-list .brand.active {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary-color);
+}
+
+.brands-list .brand img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.brand-detail {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-top: 5px solid var(--primary-color);
+    transition: opacity 0.3s ease;
+}
+
+.brand-logo-large {
+    flex: 0 0 300px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    padding-right: 30px;
+}
+
+.brand-logo-large img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+}
+
+.brand-description {
+    flex: 1;
+}
+
+.brand-description h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.brand-description p {
+    line-height: 1.6;
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.btn-view-all {
+    padding: 12px 30px;
+    text-decoration: none;
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 50px 5% 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   10. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    nav a {
+        margin: 5px 10px;
+    }
+    
+    /* About & Contact responsive */
+    .about-content, .contact-content {
+        flex-direction: column;
+    }
+    
+    .milestone-list {
+        flex-direction: column;
+    }
+
+    /* Brand detail responsive */
+    .brand-detail {
+        flex-direction: column;
+    }
+    
+    .brand-logo-large {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-right: 0;
+        padding-bottom: 20px;
+        flex: auto;
+    }
+}

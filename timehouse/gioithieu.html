@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu | TimeHouse</title>
+</head>
+<link rel="stylesheet" href="style.css" type ="text/css">
+<body>
+    <header>
+        <div class="top-header">
+            <a href="index.html" class="logo">TIMEHOUSE</a>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm đồng hồ...">
+                <button onclick="handleSearch()" style="border:none; background:none; cursor:pointer;">🔍</button>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+                <a href="giohang.php" style="text-decoration: none; color: #333;">Giỏ hàng (<b id="cart-count" style="color: #ff6600;">0</b>)</a>
+                <div id="user-links">
+                    <a href="dangnhap.php">Đăng nhập</a> | <a href="dangky.php">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">TRANG CHỦ</a>
+            <a href="sanpham.php">SẢN PHẨM</a>
+            <a href="thuonghieu.php">THƯƠNG HIỆU</a>
+            <a href="gioithieu.html">GIỚI THIỆU</a>
+            <a href="lienhe.html">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+
+    <section class="about-section">
+        <h2 class="section-title" style="font-size: 40px;">ĐỒNG HỒ TIMEHOUSE
+        <p style="font-size: 20px;">Hệ thống bán lẻ đồng hồ cao cấp lâu đời từ năm 2015</p></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 style="font-size: 22px;">HÀNH TRÌNH KINH DOANH 1 THẬP KỈ</h3>
+                <p style="font-size: 18px;">Trải qua một thập kỷ hình thành và phát triển, TimeHouse đã từng bước khẳng định vị trí của mình trong lĩnh vực kinh doanh đồng hồ. Từ những ngày đầu chỉ với vài mẫu sản phẩm đơn giản, chúng tôi đã không ngừng mở rộng, cải tiến và hoàn thiện để mang đến cho khách hàng những lựa chọn tốt nhất.</p>
+                <p style="font-size: 18px;">Trong suốt 10 năm ấy, TimeHouse luôn giữ vững mục tiêu:
+Mang đến những mẫu đồng hồ chất lượng, bền bỉ và phù hợp với phong cách sống hiện đại.
+Mỗi giai đoạn phát triển đều đánh dấu sự nỗ lực nhằm cải thiện dịch vụ, đa dạng hóa sản phẩm và nâng cao trải nghiệm mua sắm cho khách hàng.</p>
+                <p style="font-size: 18px;">Hơn 10 năm không quá dài, nhưng đủ để TimeHouse chứng minh sự uy tín, tận tâm và luôn đặt khách hàng làm trung tâm. Chúng tôi tự hào khi được đồng hành cùng hàng nghìn khách hàng trong hành trình chọn lựa chiếc đồng hồ phù hợp – một người bạn nhỏ gắn bó với cuộc sống mỗi ngày.</p>
+                <p style="font-size: 18px;">Và hành trình đó vẫn đang tiếp tục, với những bước tiến mới, những giá trị mới và cam kết luôn mang đến sự tin tưởng – chất lượng – phong cách cho mỗi khách hàng đến với TimeHouse.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1491336477066-31156b5e4f35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cửa hàng TimeHouse">
+            </div>
+        </div>
+        
+        <div class="values">
+            <div class="value-item">
+                <div class="value-icon">✓</div>
+                <div class="value-title">CHẤT LƯỢNG</div>
+                <p>Tất cả sản phẩm đều là hàng chính hãng 100%, được nhập khẩu trực tiếp từ các thương hiệu uy tín trên thế giới.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">👑</div>
+                <div class="value-title">UY TÍN</div>
+                <p>10 năm kinh nghiệm trong lĩnh vực phân phối đồng hồ, được hàng nghìn khách hàng tin tưởng lựa chọn.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">💝</div>
+                <div class="value-title">TẬN TÂM</div>
+                <p>Đội ngũ nhân viên chuyên nghiệp, tư vấn tận tình giúp khách hàng chọn được sản phẩm phù hợp nhất.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🛡️</div>
+                <div class="value-title">BẢO HÀNH</div>
+                <p>Chính sách bảo hành lên đến 5 năm, hỗ trợ sửa chữa và bảo dưỡng trọn đời cho tất cả sản phẩm.</p>
+            </div>
+        </div>
+        
+        <div class="milestones">
+            <h3 style="text-align: center; margin-bottom: 30px;">CHẶNG ĐƯỜNG PHÁT TRIỂN</h3>
+            <div class="milestone-list">
+                <div class="milestone">
+                    <div class="milestone-number">2010</div>
+                    <div class="milestone-text">Thành lập TimeHouse</div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-number">5</div>
+                    <div class="milestone-text">Chi nhánh trên toàn quốc</div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-number">50.000+</div>
+                    <div class="milestone-text">Khách hàng tin tưởng</div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-number">5+</div>
+                    <div class="milestone-text">Thương hiệu đối tác</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                  
+                    <li><a href="lienhe.html">Hệ thống cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="lienhe.html">Chính sách bảo hành</a></li>
+                    <li><a href="lienhe.html">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    
+                
+                    <li><a href="giohang.php">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <ul>
+                    <li>Địa chỉ: nhóm 10 lập trình web trường uth </li>
+                    <li>Hotline: 1900 000 </li>
+                    <li>Email: infor@timehouse.vn</li>
+                    <li>Giờ làm việc: 8:00 - 22:00</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
