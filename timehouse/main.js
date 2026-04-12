@@ -74,18 +74,18 @@ function updateHeaderUser() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             let adminBtn = currentUser.role == 1 ? `<a href="admin/index.php" style="color:#ff6600;margin-right:10px;text-decoration:none;font-weight:bold">⚙️ Quản Trị</a> | ` : '';
-            userLinksDiv.innerHTML = `${adminBtn} <span style="margin:0 10px">Chào, <b>${currentUser.username}</b></span> <a href="#" onclick="logout()" style="color:red;text-decoration:none">Đăng xuất</a>`;
+            userLinksDiv.innerHTML = `${adminBtn} <span style="margin:0 10px">Chào, <b>${currentUser.username}</b></span> <a href="logout.php" style="color:red;text-decoration:none">Đăng xuất</a>`;
         } else {
+            // Chỗ này cập nhật trỏ về dangnhap.php và dangky.php (hoặc login.php nếu bạn dùng bản gộp)
             userLinksDiv.innerHTML = `<a href="dangnhap.php">Đăng nhập</a> | <a href="dangky.php">Đăng ký</a>`;
         }
     }
 }
 
 function logout() {
-    if(confirm('Đăng xuất?')) {
-        localStorage.removeItem('currentUser');
-        // fetch('logout.php'); // Nếu có file logout
-        window.location.href = 'index.html';
+    if(confirm('Bạn có chắc chắn muốn đăng xuất không?')) {
+        // Javascript chuyển hướng gọi lên server để file logout.php xử lý xóa session
+        window.location.href = 'logout.php';
     }
 }
 
@@ -107,7 +107,7 @@ function addToCart(id, name, price, image) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
         alert("Bạn phải ĐĂNG NHẬP để mua hàng!");
-        window.location.href = 'dangnhap.php';
+        window.location.href = 'login.php';
         return;
     }
     let formData = new FormData();
