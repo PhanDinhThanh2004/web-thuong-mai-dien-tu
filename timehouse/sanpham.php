@@ -44,23 +44,30 @@
                     // Ví dụ: "Rolex Submariner"
                     $searchKey = $row['brand'] . " " . $row['name'];
             ?>
-                <div class="product" data-name="<?php echo $searchKey; ?>">
-                    
-                    <div class="product-img-box">
-                        <img src="<?php echo $row['image']; ?>" class="img-main">
-                        <img src="<?php echo !empty($row['image2']) ? $row['image2'] : $row['image']; ?>" class="img-hover">
-                    </div>
+                <div class="product" data-name="<?php echo htmlspecialchars($searchKey); ?>">
+                    <a href="chitiet.php?id=<?php echo $row['id']; ?>" class="product-link product-img-box">
+                        <img src="<?php echo $row['image']; ?>" class="img-main" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                        <img src="<?php echo !empty($row['image2']) ? $row['image2'] : $row['image']; ?>" class="img-hover" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                    </a>
                     <div class="info">
-                        <div class="brand"><?php echo $row['brand']; ?></div>
-                        <div class="name"><?php echo $row['name']; ?></div>
+                        <div class="brand"><?php echo htmlspecialchars($row['brand']); ?></div>
+                        <a href="chitiet.php?id=<?php echo $row['id']; ?>" class="product-link product-name-link">
+                            <div class="name"><?php echo htmlspecialchars($row['name']); ?></div>
+                        </a>
                         <div class="price">
                             <?php if($row['old_price'] > 0): ?>
                                 <span class="old-price"><?php echo number_format($row['old_price'], 0, ',', '.'); ?>đ</span>
                             <?php endif; ?>
                             <?php echo number_format($row['price'], 0, ',', '.'); ?>đ
                         </div>
-                        
-                        <button class="order-btn" onclick="addToCart(<?php echo $row['id']; ?>, '<?php echo $row['name']; ?>', <?php echo $row['price']; ?>, '<?php echo $row['image']; ?>')">THÊM VÀO GIỎ</button>
+
+                        <div class="product-actions">
+                            <a href="chitiet.php?id=<?php echo $row['id']; ?>" class="btn-secondary">XEM CHI TIẾT</a>
+                            <button
+                                class="order-btn"
+                                onclick='addToCart(<?php echo (int) $row["id"]; ?>, <?php echo json_encode($row["name"], JSON_UNESCAPED_UNICODE | JSON_HEX_APOS | JSON_HEX_QUOT); ?>, <?php echo (int) $row["price"]; ?>, <?php echo json_encode($row["image"], JSON_UNESCAPED_UNICODE | JSON_HEX_APOS | JSON_HEX_QUOT); ?>)'
+                            >THÊM VÀO GIỎ</button>
+                        </div>
                     </div>
                 </div>
             <?php
